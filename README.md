@@ -9,23 +9,23 @@ This repository contains the artifact associated with the accompanying paper. It
 ```text
 .
 ├── artifact/
-│   ├── configs/              Configuration files for Phoebus and individual test cases.
-│   ├── default-files/        Default and template files used to initialize and run test cases.
-│   ├── dockerfiles/apache/   Docker configuration for building Apache-based web server environments.
-│   ├── endpoint-scripts/     Server-side PHP scripts for collecting test results and reports.
-│   ├── scripts/              Installation and execution scripts.
-│   ├── use-cases/            Test cases, including templates, generated tests, and Selenium scripts.
-│   ├── utils/                Utility modules and supporting files used by Phoebus.
-│   ├── websockets/           WebSocket support code.
-│   ├── analyzer.py           Analyzes browser results, identifies inconsistencies, and generates reports.
-│   ├── downloader.py         Downloads browsers and their corresponding WebDrivers.
-│   ├── env-setup.py          Sets up the testing environment, including containers/servers and TLS certificates.
-│   ├── generator.py          Generates browser feature configurations.
-│   ├── testGenerator.py      Expands test templates into concrete test pages.
-│   ├── tester.py             Executes browser tests and collects their results.
-│   ├── requirements.txt      Python package dependencies required by Phoebus.
-│   ├── ...                   Rest of Phoebus source code and supporting resources.
-│   └── README.md             Detailed installation and usage instructions.
+│   ├── configs/              Configuration files for Phoebus and individual test cases
+│   ├── default-files/        Default and template files used to initialize and run test cases
+│   ├── dockerfiles/apache/   Docker configuration for building Apache-based web server environments
+│   ├── endpoint-scripts/     Server-side PHP scripts for collecting test results and reports
+│   ├── scripts/              Installation and execution scripts
+│   ├── use-cases/            Test cases, including templates, generated tests, and Selenium scripts
+│   ├── utils/                Utility modules and supporting files used by Phoebus
+│   ├── websockets/           WebSocket support code
+│   ├── analyzer.py           Analyzes browser results, identifies inconsistencies, and generates reports
+│   ├── downloader.py         Downloads browsers and their corresponding WebDrivers
+│   ├── env-setup.py          Sets up the testing environment, including containers/servers and TLS certificates
+│   ├── generator.py          Generates browser feature configurations
+│   ├── testGenerator.py      Expands test templates into concrete test pages
+│   ├── tester.py             Executes browser tests and collects their results
+│   ├── requirements.txt      Python package dependencies required by Phoebus
+│   ├── ...                   Rest of Phoebus source code and supporting resources
+│   └── README.md             Detailed installation and usage instructions
 │
 ├── claims/
 │   ├── claim-1/              Material for demonstrating Claim 1 — Feature deployment generation
