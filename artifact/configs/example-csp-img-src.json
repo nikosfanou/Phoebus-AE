@@ -1,0 +1,31 @@
+{
+    "use_case": "content-security-policy/img-src",
+    "run_on": ["{EXAMPLE}"],
+    "mechanisms": [
+        {
+            "mechanism": "Content-Security-Policy",
+            "set_on" : ["{EXAMPLE}"],
+            "test_directives" : ["img-src"],
+            "custom_values": ["img-src", "iMG-sRc 'self'"],
+            "directives": {
+                "img-src": ["'none'", "{SOURCE_EXPRESSION_LIST}"]
+            },
+            "placeholders": {
+                "{SOURCE_EXPRESSION_LIST}": ["http://{EXAMPLE}", "http://{CROSSEXAMPLE}", "*", "'self'", "http://*.{EXAMPLE}"]
+            }
+        }
+    ],
+    "status_codes": [200, 300, 400],
+    "html": {
+        "placeholders": {
+            "{DOMAINS}": ["{EXAMPLE}", "{SUB_EXAMPLE}", "{CROSSEXAMPLE}"],
+            "{IMG_TYPE}": ["png", "jpg"],
+            "{IMG_URL}": ["http://{DOMAINS}/resources/default.{IMG_TYPE}"]
+        }
+    },
+    "browsers": {
+        "Chrome": "latest",
+        "Edge": "latest",
+        "Firefox": "latest"
+    }
+}
