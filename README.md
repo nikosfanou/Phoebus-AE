@@ -28,9 +28,9 @@ This repository contains the artifact associated with the accompanying paper. It
 │   └── README.md             Detailed installation and usage instructions.
 │
 ├── claims/
-│   ├── claim-1/              Material for demonstrating Claim 1 -- Feature deployment generation
-│   ├── claim-2/              Material for demonstrating Claim 2 -- HTML test generation
-│   └── claim-3/              Material for demonstrating Claim 3 -- Differential testing and inconsistency analysis
+│   ├── claim-1/              Material for demonstrating Claim 1 — Feature deployment generation
+│   ├── claim-2/              Material for demonstrating Claim 2 — HTML test generation
+│   └── claim-3/              Material for demonstrating Claim 3 — Differential testing and inconsistency analysis
 │
 ├── install.sh                Top-level artifact installation script
 ├── use.txt                   Intended use and limitations
@@ -62,13 +62,13 @@ The `claims/` directory contains the scripts and expected outputs associated wit
 
 The current claims concern the following capabilities:
 
-1. **Feature deployment generation**
+1. **Feature deployment generation.**
    Phoebus can systematically generate browser feature deployments from high-level feature descriptions, including configurations covering common and edge-case feature values.
 
-2. **HTML test generation**
+2. **HTML test generation.**
    Phoebus can expand user-defined HTML test templates into fully fledged test pages.
 
-3. **Differential testing and inconsistency analysis**
+3. **Differential testing and inconsistency analysis.**
    Phoebus can automatically execute generated tests across browsers, identify behavioral inconsistencies, and cluster the resulting inconsistencies to facilitate root-cause analysis.
 
 Instructions for executing each claim demonstration are provided in the corresponding subdirectory of `claims/`.
