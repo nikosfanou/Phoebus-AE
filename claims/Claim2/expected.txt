@@ -1,0 +1,3 @@
+Claim: Phoebus can expand user-defined HTML test templates into fully fledged test pages.
+
+Expected outcome: 

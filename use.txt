@@ -1,0 +1,8 @@
+Intended use
+---
+The artifact is intended for research and experimental use and provides the implementation and supporting resources associated with the accompanying paper. It is not intended as production software or for safety-critical or mission-critical applications.
+
+
+About destructive actions
+---
+The artifact does not intentionally delete or modify user data. Its installation process performs system-level configuration, including installing software packages, configuring local Apache and Docker services, modifying related permissions and user groups, and creating local certificates. It should therefore be run in a dedicated Ubuntu environment or VM where such system-level changes are acceptable.
