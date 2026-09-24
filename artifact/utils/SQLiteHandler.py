@@ -15,6 +15,8 @@ class SQLiteHandler():
         self._con = None
    
     def connect(self):
+        # create db folder if it does not exist
+        os.makedirs(os.path.dirname(self._db_path), exist_ok=True)
         # open db
         self._con = sqlite3.connect(self._db_path, timeout=600)
 

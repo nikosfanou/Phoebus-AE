@@ -25,7 +25,6 @@
     },
     "browsers": {
         "Chrome": "latest",
-        "Edge": "latest",
         "Firefox": "latest"
     }
 }

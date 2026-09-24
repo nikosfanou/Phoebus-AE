@@ -18,6 +18,8 @@ To install Phoebus and its dependencies, run:
 ./scripts/setup.sh
 ```
 
+> **⚠️ Important:** After completing the installation, you must **restart the system** before running Phoebus. The restart is required for the Docker configuration and user-group changes made during installation to take effect, allowing Docker to be used without `sudo`.
+
 ## Downloading Browsers and WebDrivers
 
 To download the latest available version of a browser together with its matching WebDriver, run:

@@ -56,6 +56,8 @@ The installation script invokes the artifact setup procedure and installs and co
 
 After installation, follow the detailed instructions in [`artifact/README.md`](artifact/README.md) for using Phoebus. The artifact README provides a step-by-step example covering browser and WebDriver setup, test case creation and configuration, test generation, test execution, and result analysis.
 
+> **⚠️ Important:** After completing the installation, you must **restart the system** before running Phoebus. The restart is required for the Docker configuration and user-group changes made during installation to take effect, allowing Docker to be used without `sudo`.
+
 ## Artifact Claims
 
 The `claims/` directory contains the scripts and expected outputs associated with the claims described in the artifact metadata.

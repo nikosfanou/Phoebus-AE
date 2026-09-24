@@ -22,6 +22,12 @@ servers_certfile="./certs/phoebusCA.pem"
 servers_certname="PHOEBUS_CA"
 trust_store_path="/usr/share/ca-certificates/phoebus"
 
+# Initialize $certdir directory/database, if not exist
+mkdir -p "$certdir"
+if ! certutil -L -d sql:"$certdir" >/dev/null 2>&1; then
+    certutil -N -d sql:"$certdir" --empty-password
+fi
+
 # Trust Servers CA -- NSS database
 # Delete if already exists, and re-add
 certutil -D -n "$servers_certname" -d sql:"$certdir" 2>/dev/null || true

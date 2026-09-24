@@ -62,7 +62,7 @@ mkdir -p ./certs
 python3 env-setup.py --create_ca
 
 # Before running trust_ca.sh, we need to run mitmproxy once to generate its ca if not already generated
-timeout 1s mitmdump --set console_eventlog_verbosity=error --quiet
+timeout 1s ~/.local/bin/mitmdump --set console_eventlog_verbosity=error --quiet
 
 # Add CA on browsers' trusted CA
 if ! dpkg -s libnss3-tools >/dev/null 2>&1; then
