@@ -28,6 +28,15 @@ cd "$ARTIFACT_DIR"
 # Install cloc for counting lines of code on TestGenerator
 sudo apt install -y cloc
 
+# Install xvfb for virtual display
+if ! command -v Xvfb >/dev/null 2>&1; then
+    echo "Xvfb not found. Installing..."
+    sudo apt update
+    sudo apt install -y xvfb
+else
+    echo "Xvfb is already installed."
+fi
+
 # Install needed python packages
 python3 -m pip install -r requirements.txt
 
