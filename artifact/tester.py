@@ -722,6 +722,7 @@ def get_driver(browser_dict, flags):
             if proxy_port is not None:
                 set_chromium_proxy(options=options, port=proxy_port)
             if Constants.VIRTUAL_DISPLAY_ENABLED and Constants.DISPLAY_FOR_VIRTUAL_DISPLAY:
+                options.add_argument('--ozone-platform=x11')
                 options.add_argument(f'--display={Constants.DISPLAY_FOR_VIRTUAL_DISPLAY}')
             options.add_argument(f"--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{version} Safari/537.36 ({browser_dict['expected_ua']})")
             driver = WrappedChrome(options=options, service=service)
@@ -737,6 +738,7 @@ def get_driver(browser_dict, flags):
             if proxy_port is not None:
                 set_chromium_proxy(options=options, port=proxy_port)
             if Constants.VIRTUAL_DISPLAY_ENABLED and Constants.DISPLAY_FOR_VIRTUAL_DISPLAY:
+                options.add_argument('--ozone-platform=x11')
                 options.add_argument(f'--display={Constants.DISPLAY_FOR_VIRTUAL_DISPLAY}')
             options.add_argument(f"--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Opera/{version} Safari/537.36 ({browser_dict['expected_ua']})")
             driver = WrappedChrome(service = service, options=options)
@@ -751,6 +753,7 @@ def get_driver(browser_dict, flags):
             if proxy_port is not None:
                 set_chromium_proxy(options=options, port=proxy_port)
             if Constants.VIRTUAL_DISPLAY_ENABLED and Constants.DISPLAY_FOR_VIRTUAL_DISPLAY:
+                options.add_argument('--ozone-platform=x11')
                 options.add_argument(f'--display={Constants.DISPLAY_FOR_VIRTUAL_DISPLAY}')
             options.add_argument(f"--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Brave/{version} Safari/537.36 ({browser_dict['expected_ua']})")
             driver = WrappedChrome(options=options, service=service)
@@ -765,6 +768,7 @@ def get_driver(browser_dict, flags):
             if proxy_port is not None:
                 set_chromium_proxy(options=options, port=proxy_port)
             if Constants.VIRTUAL_DISPLAY_ENABLED and Constants.DISPLAY_FOR_VIRTUAL_DISPLAY:
+                options.add_argument('--ozone-platform=x11')
                 options.add_argument(f'--display={Constants.DISPLAY_FOR_VIRTUAL_DISPLAY}')
             options.add_argument("--disable-features=msSmartScreenProtection") # to stop it from blocking our self-signed (SSL) pages.
             options.add_argument(f"--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/{version} Safari/537.36 ({browser_dict['expected_ua']})")
