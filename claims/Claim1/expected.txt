@@ -1,3 +1,28 @@
 Claim: Phoebus can systematically generate browser feature deployments from high-level feature descriptions, including configurations covering common and edge-case feature values.
 
-Expected outcome: 
+Expected outcome:
+
+The demonstration includes four examples of browser feature deployment generation, showing that Phoebus can generate configurations from predefined feature descriptions as well as customized generation policies.
+
+1. Set-Cookie:
+   Phoebus generates valid Set-Cookie header configurations based on the predefined feature configuration. No additional user configuration is required.
+
+2. sandbox:
+   Phoebus generates valid values for the sandbox HTML attribute based on the predefined feature configuration. No additional user configuration is required.
+
+3. CSP: frame-ancestors:
+   This example demonstrates the different generation modes and options supported by Phoebus. The generated deployments include valid values, mutated corner-case values, duplicate values, a deployment with no frame-ancestors mechanism configured (which can serve as a baseline), and user-specified custom values.
+
+4. Permissions-Policy:
+   This example demonstrates customized generation policies. The predefined configuration is not used (no_defaults is enabled), and the generation policy is modified to produce combinations of multiple directives and values, with at most two combinations generated at a time.
+
+Across the four examples, Phoebus generates:
+
+- 17,275 values
+- 16,383 values
+- 5,226 values
+- 777,420 values
+
+for a total of 816,304 generated values, including the associated metadata used for subsequent analysis.
+
+The generated data is approximately 800 MB in JSON format.
