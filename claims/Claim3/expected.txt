@@ -1,3 +1,16 @@
 Claim: Phoebus can automatically execute generated tests across browsers, identify behavioral inconsistencies, and cluster the resulting inconsistencies to facilitate root-cause analysis.
 
 Expected outcome: 
+
+This claim is demonstrated using a predefined minimal example test case.
+
+To evaluate this claim, run the example test case following the step-by-step instructions provided in `artifact/README.md`, or simply execute the `run.sh` script.
+
+The example demonstrates the end-to-end Phoebus workflow, including:
+
+- generation of feature values;
+- expansion of templates into fully fledged tests;
+- execution of the generated test across the configured browsers;
+- collection of browser execution results;
+- identification of behavioral inconsistencies between browsers; and
+- clustering of the resulting inconsistencies to facilitate root-cause analysis.
