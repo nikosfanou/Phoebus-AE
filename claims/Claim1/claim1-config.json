@@ -17,16 +17,12 @@
          }
      },
      {
-        "mechanism": "Referrer-Policy",
-        "multiple_directives": true,
-        "multiple_directives_all_orders": true
-     },
-     {
         "mechanism": "Permissions-Policy",
         "no_defaults": true,
-        "multiple_directives": false,
+        "multiple_directives": true,
+        "multiple_directives_limit": [1,2],
         "multiple_values": true,
-        "multiple_values_all_orders": true,
+        "multiple_values_limit": [1,2],
         "placeholders": {
             "{HOST_SOURCE}": ["https://{EXAMPLE}", "https://{CROSSEXAMPLE}", "*", "https://*.{EXAMPLE}"]
         }
