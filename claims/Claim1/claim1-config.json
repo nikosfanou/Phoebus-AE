@@ -1,0 +1,34 @@
+[
+    {
+        "mechanism": "Set-Cookie"
+    },
+    {
+        "mechanism": "sandbox"
+    },
+    {
+        "mechanism": "Content-Security-Policy",
+        "test_directives" : ["frame-ancestors"],
+        "duplicate_directives": true,
+        "corner_case_mutations": true,
+        "run_without_mechanism_first": true,
+        "custom_values": ["FRAME-ANCESTORS 'NONE'", "FRAME--ANCESTORS 'none'"],
+        "placeholders": {
+            "{SOURCE_EXPRESSION_LIST}": ["https://{EXAMPLE}", "https://{CROSSEXAMPLE}", "*", "'self'", "https://*.{EXAMPLE}"]
+         }
+     },
+     {
+        "mechanism": "Referrer-Policy",
+        "multiple_directives": true,
+        "multiple_directives_all_orders": true
+     },
+     {
+        "mechanism": "Permissions-Policy",
+        "no_defaults": true,
+        "multiple_directives": false,
+        "multiple_values": true,
+        "multiple_values_all_orders": true,
+        "placeholders": {
+            "{HOST_SOURCE}": ["https://{EXAMPLE}", "https://{CROSSEXAMPLE}", "*", "https://*.{EXAMPLE}"]
+        }
+    }
+]
