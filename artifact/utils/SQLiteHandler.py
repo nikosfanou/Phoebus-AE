@@ -314,6 +314,15 @@ class SQLiteHandler():
         if not data:
             return None
         return data
+
+    
+    def get_latest_experiment_id(self):
+        query = "SELECT MAX(id) FROM experiments"
+        max_id = self.fetch_query(query=query)
+        if not max_id:
+            return None
+        return max_id[0]
+
     
     def get_used_domains_by_id(self, id):
         query = "SELECT example, crossexample FROM experiments WHERE id=%s" % str(id)

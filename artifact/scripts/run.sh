@@ -65,3 +65,5 @@ python3 orchestrator.py --run --config $config --envConfig $env --database $data
 sudo python3 env-setup.py --deleteHosts --config $env
 # Delete Containers and IPs
 python3 orchestrator.py --restore --config $config --envConfig $env --database $database
+# Create the JSON and HTML reports for the latest experiment
+python3 analyzer.py

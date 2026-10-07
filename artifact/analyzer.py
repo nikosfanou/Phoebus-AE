@@ -6,6 +6,7 @@ from argparse import ArgumentParser
 import os
 from datetime import datetime
 import json
+from utils.SQLiteHandler import SQLiteHandler
 
 def generate_report_filenames(args, mode):
     os.makedirs("reports", exist_ok=True)
@@ -39,7 +40,7 @@ def get_args():
     parser.add_argument(
         "-exp", "--experiments",
         type=str,
-        required=True,
+        #required=True,
         help="Comma-separated experiment ids (e.g. 1,2,3)"
     )
 
@@ -68,9 +69,17 @@ def get_args():
 
     # Experiments parsing
     try:
-        args.experiments = [int(x.strip()) for x in args.experiments.split(",") if x.strip()]
+        if args.experiments is None:
+            with SQLiteHandler(args.database) as db:
+                latest_experiment_id = db.get_latest_experiment_id()
+                if latest_experiment_id is not None:
+                    args.experiments = [latest_experiment_id] # if experiment is not given, analyze the latest.
+                else:
+                    raise RuntimeError("The provided database does not contain ANY experiments.")
+        else:
+            args.experiments = [int(x.strip()) for x in args.experiments.split(",") if x.strip()]
     except ValueError:
-        raise ValueError("Invalid --experiments format. Use comma-separated integers (e.g. 1,2,3)")
+        raise ValueError("Invalid --experiments format. Use comma-separated integers (e.g., 1,2,3) to define multiple experiments.")
 
     # Mode validation
     if args.across_browsers and args.across_versions:
