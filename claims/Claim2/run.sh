@@ -9,5 +9,6 @@ cp -r $EXAMPLES "$ARTIFACT_PATH/$USE_CASES_PATH/"
 cd $ARTIFACT_PATH
 python3 testGenerator.py --config $CONFIG
 rm $CONFIG
+mkdir -p "$CURRENT_PATH/$EXAMPLES/tests/"
 mv "$USE_CASES_PATH/$EXAMPLES/tests/"* "$CURRENT_PATH/$EXAMPLES/tests/"
 rm -rf "$USE_CASES_PATH/$EXAMPLES"

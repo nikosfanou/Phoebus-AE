@@ -6,6 +6,14 @@
                 "location.href = '...';",
                 "location.assign('...');",
                 "location.replace('...');"
+            ],
+            "{SRCDOC}": [
+                "<head></head><body></body>"
+            ],
+            "{FRAME_URL}": [
+                "http://{EXAMPLE}/",
+                "data:text/html,<head></head><body></body>",
+                "javascript:`<head></head><body></body>`"
             ]
         }
     }
