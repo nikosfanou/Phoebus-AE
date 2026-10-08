@@ -1,0 +1,1 @@
+<iframe sandbox="{$mechanisms['sandbox']}" csp="{$mechanisms['Content-Security-Policy-iframe-csp']}" allow="{$mechanisms['Permissions-Policy-iframe-allow']}"></iframe>

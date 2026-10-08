@@ -1,0 +1,12 @@
+{
+    "use_case": "claim2-examples",
+    "html": {
+        "placeholders": {
+            "{REDIRECTION_METHODS}": [
+                "location.href = '...';",
+                "location.assign('...');",
+                "location.replace('...');"
+            ]
+        }
+    }
+}
