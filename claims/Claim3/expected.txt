@@ -14,3 +14,12 @@ The example demonstrates the end-to-end Phoebus workflow, including:
 - collection of browser execution results;
 - identification of behavioral inconsistencies between browsers; and
 - clustering of the resulting inconsistencies to facilitate root-cause analysis.
+
+The example introduces two CSP `img-src` values that lead to behavioral inconsistencies across browsers:
+
+- `img-src http://example.com#fr`
+- `img-src http://example.com?arg=1`
+
+For these values, Chrome treats the generated source expressions as invalid and blocks the corresponding images, whereas Firefox allows the images from `example.com`, effectively ignoring the fragment (`#fr`) and query (`?arg=1`) components when evaluating the source expression.
+
+The resulting analysis identifies 24 behavioral inconsistencies in total, as shown in the generated JSON report. There are 12 inconsistencies associated with each of the two values. For each value, the 12 inconsistencies correspond to 3 HTTP response status codes across 4 `example.com` images: one dynamically generated and one static image for each of the `.jpg` and `.png` formats.

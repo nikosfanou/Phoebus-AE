@@ -148,9 +148,17 @@ Execution results and traces will be stored in:
 db/central.db
 ```
 
+HTML and JSON analysis reports will be stored in:
+
+```text
+reports/
+```
+
 ### 6. Analyze the Results
 
-Generate JSON and HTML reports using:
+The Analyzer module can also be used to analyze previously executed experiments or to generate reports with specific options.
+
+For example:
 
 ```bash
 python3 analyzer.py --experiments 1 --report-name csp-img-src

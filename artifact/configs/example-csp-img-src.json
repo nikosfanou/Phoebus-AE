@@ -6,7 +6,7 @@
             "mechanism": "Content-Security-Policy",
             "set_on" : ["{EXAMPLE}"],
             "test_directives" : ["img-src"],
-            "custom_values": ["img-src", "iMG-sRc 'self'"],
+            "custom_values": ["img-src", "iMG-sRc 'self'", "img-src http://{EXAMPLE}?arg=1", "img-src http://{EXAMPLE}#fr"],
             "directives": {
                 "img-src": ["'none'", "{SOURCE_EXPRESSION_LIST}"]
             },
