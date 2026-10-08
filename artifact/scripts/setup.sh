@@ -72,6 +72,12 @@ python3 env-setup.py --create_ca
 
 # Before running trust_ca.sh, we need to run mitmproxy once to generate its ca if not already generated
 timeout 1s ~/.local/bin/mitmdump --set console_eventlog_verbosity=error --quiet
+rc=$?
+if [ "$rc" -eq 0 ] || [ "$rc" -eq 124 ]; then
+    echo "mitmdump: OK"
+else
+    echo "mitmdump: ERROR: Exited with code $rc"
+fi
 
 # Add CA on browsers' trusted CA
 if ! dpkg -s libnss3-tools >/dev/null 2>&1; then
