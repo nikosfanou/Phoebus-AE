@@ -1,3 +1,47 @@
 Claim: Phoebus can expand user-defined HTML test templates into fully fledged test pages.
 
 Expected outcome: 
+
+The demonstration includes four templates that exercise different template expansion features supported by Phoebus.
+
+1. Reserved keywords - `reserved_keywords.php`
+
+The template uses the reserved `elements.frames` keyword.
+
+Phoebus expands this keyword into the corresponding `iframe`, `object`, and `embed` elements and subsequently expands the `{SRCDOC}` and `{FRAME_URL}` placeholders using the values provided in the configuration.
+
+This example demonstrates how Phoebus recognizes reserved keywords in templates and expands them according to their predefined semantics.
+
+2. Reserved keyword lists - `reserved_keyword_lists.php`
+
+The template uses the `events.list` and `event_attrs.list` reserved keywords.
+
+Phoebus replaces these keywords with JavaScript-formatted lists containing the supported events and event attributes, respectively.
+
+The resulting test uses these lists directly in JavaScript to dynamically register event listeners and event-handler attributes on the `window` and `document` objects.
+
+This demonstrates the `.list` property provided by the reserved event and event-attribute keywords for use in JavaScript-based tests.
+
+3. Isolation and preservation - `isolation.php`
+
+The template contains multiple `<script>` elements and demonstrates the `isolated` and `preserved` attributes.
+
+The scripts marked with `isolated` are moved into separate generated `_iso.php` pages, while the script containing `redirect.js` remains in the current page.
+
+The `initialize.js` script is additionally marked as `preserved`, causing it to be included in every generated page, including both the original page and the generated isolated pages.
+
+The `{REDIRECTION_METHODS}` placeholder is also replaced during template expansion, demonstrating placeholder-based customization of the generated tests.
+
+4. HTML attribute mechanisms - `html_attribute_mechanism.php`
+
+The template demonstrates the use of HTML attribute mechanisms through PHP variables, using the following Phoebus mechanisms (from `mechanisms.jsonc`):
+
+- `sandbox` -- the `sandbox` attribute of the `iframe` element
+- `Content-Security-Policy-iframe-csp` -- the `csp` attribute of the `iframe` element, carrying a Content-Security-Policy value
+- `Permissions-Policy-iframe-allow` -- the `allow` attribute of the `iframe` element, carrying a Permissions-Policy value
+
+Phoebus recognizes expressions of the form `{$mechanisms['...']}` and generates the corresponding PHP code to handle the configured mechanism values.
+
+When a mechanism is not configured, the corresponding element is omitted. When a single value is configured, the element is generated with that value. When multiple values are configured, Phoebus expands the template for the different values and assigns distinct identifiers to the generated elements.
+
+This example demonstrates that multiple HTML attribute mechanisms can be used within the same element and that the template expansion process handles both scalar and array-valued PHP mechanism variables.
