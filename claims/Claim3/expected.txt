@@ -1,10 +1,18 @@
 Claim: Phoebus can automatically execute generated tests across browsers, identify behavioral inconsistencies, and cluster the resulting inconsistencies to facilitate root-cause analysis.
 
+Prerequisite:
+
+Before executing the example test case or the claim script,
+download the required browsers and their corresponding WebDrivers.
+For this claim, Google Chrome and Mozilla Firefox are required.
+See the "Downloading Browsers and WebDrivers" section of artifact/README.md for step-by-step instructions.
+
 Expected outcome: 
 
 This claim is demonstrated using a predefined minimal example test case.
 
-To evaluate this claim, run the example test case following the step-by-step instructions provided in `artifact/README.md`, or simply execute the `run.sh` script.
+To evaluate this claim, run the example test case following the step-by-step instructions provided in `artifact/README.md`,
+or simply execute the `run.sh` script.
 
 The example demonstrates the end-to-end Phoebus workflow, including:
 
@@ -20,6 +28,11 @@ The example introduces two CSP `img-src` values that lead to behavioral inconsis
 - `img-src http://example.com#fr`
 - `img-src http://example.com?arg=1`
 
-For these values, Chrome treats the generated source expressions as invalid and blocks the corresponding images, whereas Firefox allows the images from `example.com`, effectively ignoring the fragment (`#fr`) and query (`?arg=1`) components when evaluating the source expression.
+For these values, Chrome treats the generated source expressions as invalid and blocks the corresponding images,
+whereas Firefox allows the images from `example.com`, effectively ignoring the fragment (`#fr`) and query (`?arg=1`) components
+when evaluating the source expression.
 
-The resulting analysis identifies 24 behavioral inconsistencies in total, as shown in the generated JSON report. There are 12 inconsistencies associated with each of the two values. For each value, the 12 inconsistencies correspond to 3 HTTP response status codes across 4 `example.com` images: one dynamically generated and one static image for each of the `.jpg` and `.png` formats.
+The resulting analysis identifies 24 behavioral inconsistencies in total, as shown in the generated JSON report.
+There are 12 inconsistencies associated with each of the two values.
+For each value, the 12 inconsistencies correspond to 3 HTTP response status codes across 4 `example.com` images:
+one dynamically generated and one static image for each of the `.jpg` and `.png` formats.

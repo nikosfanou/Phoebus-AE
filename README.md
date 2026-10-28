@@ -80,4 +80,3 @@ Instructions for executing each claim demonstration are provided in the correspo
 The main Phoebus implementation and its detailed usage documentation are located in [`artifact/`](artifact/).
 
 The [`artifact/README.md`](artifact/README.md) provides detailed installation and usage instructions, including browser and WebDriver setup, test generation, test execution, and result analysis.
-

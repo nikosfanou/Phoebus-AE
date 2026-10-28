@@ -23,10 +23,11 @@ cd "$ARTIFACT_DIR"
 ./scripts/install_apache.sh
 
 
-# Install Dependencies
-
-# Install cloc for counting lines of code on TestGenerator
-sudo apt install -y cloc
+# Install dependencies:
+# 1. unzip: required by the browser installation script
+# 2. gnome-terminal: used by the orchestrator to launch the tester
+# 3. cloc: used by TestGenerator to count lines of code
+sudo apt install -y unzip gnome-terminal cloc
 
 # Install xvfb for virtual display
 if ! command -v Xvfb >/dev/null 2>&1; then
@@ -70,13 +71,26 @@ mkdir -p ./certs
 # Generate Certification Authority (CA)
 python3 env-setup.py --create_ca
 
-# Before running trust_ca.sh, we need to run mitmproxy once to generate its ca if not already generated
-timeout 1s ~/.local/bin/mitmdump --set console_eventlog_verbosity=error --quiet
-rc=$?
+# Start mitmproxy once to generate its CA certificate if needed.
+MITMDUMP="$HOME/.local/bin/mitmdump"
+
+if timeout 3s "$MITMDUMP" --set console_eventlog_verbosity=error --quiet; then
+    rc=0
+else
+    rc=$?
+fi
+
 if [ "$rc" -eq 0 ] || [ "$rc" -eq 124 ]; then
-    echo "mitmdump: OK"
+    echo "mitmdump: exited with code $rc"
 else
     echo "mitmdump: ERROR: Exited with code $rc"
+    exit "$rc"
+fi
+
+# Verify that the expected CA certificate was actually generated.
+if [ ! -s "$HOME/.mitmproxy/mitmproxy-ca-cert.pem" ]; then
+    echo "ERROR: mitmproxy CA certificate was not generated."
+    exit 1
 fi
 
 # Add CA on browsers' trusted CA
