@@ -25,9 +25,8 @@ cd "$ARTIFACT_DIR"
 
 # Install dependencies:
 # 1. unzip: required by the browser installation script
-# 2. gnome-terminal: used by the orchestrator to launch the tester
-# 3. cloc: used by TestGenerator to count lines of code
-sudo apt install -y unzip gnome-terminal cloc
+# 2. cloc: used by TestGenerator to count lines of code
+sudo apt install -y unzip cloc
 
 # Install xvfb for virtual display
 if ! command -v Xvfb >/dev/null 2>&1; then

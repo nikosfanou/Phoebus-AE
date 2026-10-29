@@ -198,7 +198,7 @@ def orchestrate(threads, tests, envConfig, database):
 
     start = 0
     end = math.ceil(tests_per_tester)
-    if start >= end: return
+    if start >= end: return 0
 
     processes = []
     # orchestrate the tests in the different threads
@@ -217,8 +217,9 @@ def orchestrate(threads, tests, envConfig, database):
         example = 'example' + (str(thread) if thread > 1 else "")
         crossexample = 'crossexample' + (str(thread) if thread > 1 else "")
         tester_command = f"python3 tester.py --example {example} --crossexample {crossexample} --mainConfig {tester_config_name} --config {envConfig} --database {database}"
-        print(tester_command)
-        process = subprocess.Popen(['gnome-terminal', '--wait', '-e', f'{tester_command}'])
+        print(f"Running Tester with the following command:\n{tester_command}\n")
+        # process = subprocess.Popen(['gnome-terminal', '--wait', '-e', f'{tester_command}'])
+        process = subprocess.Popen(tester_command, shell=True)
         processes.append(process)
 
         remaining_threads += -1
@@ -229,12 +230,18 @@ def orchestrate(threads, tests, envConfig, database):
         end += math.ceil(tests_per_tester)
 
     # wait for tester instances to finish
+    tester_rc = 0 # only 1 process is supported currently, so we don't need a list!
     for process in processes:
-        process.wait()
+        rc = process.wait()
+        if rc != 0:
+            print(f"[ERROR] Tester failed with exit code {rc}.")
+            tester_rc = rc
     
     # clean the tester intermediate configurations
     for tester_config in tester_configs:
         subprocess.run(f"rm {tester_config}", shell=True)
+
+    return tester_rc
 
 
 def create_network(envConfig):
@@ -299,10 +306,21 @@ if __name__ == "__main__":
     # network should already been created in order to assign available ips on this subnet
     if args.addContainers:
         write_containers_to_conf(filename=args.envConfig, threads=threads, default_containers=Constants.DEFAULT_CONTAINERS)
+
     if args.run:
         generate_certificates(envConfig=args.envConfig)
         setup_environment(envConfig=args.envConfig)
-        orchestrate(threads=threads, tests=tests, envConfig=args.envConfig, database=args.database)
+
+        try:
+            tester_rc = orchestrate(threads=threads, tests=tests, envConfig=args.envConfig, database=args.database)
+        except Exception as e:
+            print(e)
+            tester_rc = 1
+
         delete_environment(envConfig=args.envConfig)
+
+        if tester_rc != 0:
+            exit(tester_rc)
+
     if args.restore:
         restore_config(filename=args.envConfig, default_containers=Constants.DEFAULT_CONTAINERS)

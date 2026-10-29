@@ -60,10 +60,20 @@ python3 orchestrator.py --addContainers --config $config --envConfig $env --data
 # Add the domain names
 sudo python3 env-setup.py --addHosts --config $env
 # Run Orchestrator and Tester
-python3 orchestrator.py --run --config $config --envConfig $env --database $database
+if python3 orchestrator.py --run --config "$config" --envConfig "$env" --database "$database"; then
+  run_rc=0
+else
+  run_rc=$?
+  echo "Error: Orchestrator/Tester failed with exit code $run_rc"
+fi
 # Delete domain names
 sudo python3 env-setup.py --deleteHosts --config $env
 # Delete Containers and IPs
 python3 orchestrator.py --restore --config $config --envConfig $env --database $database
 # Create the JSON and HTML reports for the latest experiment
-python3 analyzer.py
+if [ "$run_rc" -eq 0 ]; then
+  python3 analyzer.py
+else
+  echo "Skipping analyzer.py because the experiment failed."
+  exit "$run_rc"
+fi
